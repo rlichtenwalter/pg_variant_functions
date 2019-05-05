@@ -1,5 +1,5 @@
 # pg_variant_functions extension
 comment = 'efficient functions for variant analyses over TINYINT[] genotype representations'
 default_version = '1.0'
-module_pathname = '$libdir/pg_variant_tools'
+module_pathname = '$libdir/pg_variant_functions'
 relocatable = true
