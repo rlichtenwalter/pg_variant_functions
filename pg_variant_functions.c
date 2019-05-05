@@ -61,7 +61,7 @@ Datum alternate_allele_frequency( PG_FUNCTION_ARGS ) {
 PG_FUNCTION_INFO_V1( summarize_variant );
 Datum summarize_variant( PG_FUNCTION_ARGS ) {
 	TupleDesc tuple_desc;
-	ArrayType* values
+	ArrayType* values;
 	Oid values_type;
 	int16 values_width;
 	bool values_passbyvalue;
@@ -69,7 +69,7 @@ Datum summarize_variant( PG_FUNCTION_ARGS ) {
 	Datum* values_content;
 	bool* values_nullflags;
 	int values_length;
-	size_t composite_type_elements
+	size_t composite_type_elements;
 	Datum* results_content;
 	bool* results_nullflags;
 	ArrayType* indices;
