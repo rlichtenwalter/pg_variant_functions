@@ -85,7 +85,7 @@ Datum summarize_variant( PG_FUNCTION_ARGS ) {
 	unsigned int alternate_count;
 	int i;
 	HeapTuple tuple;
-	Datum result
+	Datum result;
 		
 	if( PG_ARGISNULL(0) ) {
 		ereport( ERROR, (errmsg("summarize_variant: array of values must be non-null")) );
