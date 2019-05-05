@@ -84,7 +84,9 @@ Datum summarize_variant( PG_FUNCTION_ARGS ) {
 	unsigned int nonnull_count;
 	unsigned int alternate_count;
 	int i;
-	
+	HeapTuple tuple;
+	Datum result
+		
 	if( PG_ARGISNULL(0) ) {
 		ereport( ERROR, (errmsg("summarize_variant: array of values must be non-null")) );
 	}
@@ -174,7 +176,7 @@ Datum summarize_variant( PG_FUNCTION_ARGS ) {
 	results_content[1] = Float4GetDatum( nonnull_count == 0 ? 0 : alternate_count/(2.0*nonnull_count) );
 	results_nullflags[1] = nonnull_count == 0;
 
-	HeapTuple tuple = heap_form_tuple( tuple_desc, results_content, results_nullflags );
-	Datum result = HeapTupleGetDatum( tuple );
+	tuple = heap_form_tuple( tuple_desc, results_content, results_nullflags );
+	result = HeapTupleGetDatum( tuple );
 	PG_RETURN_DATUM( result );
 }
