@@ -1,0 +1,15 @@
+This is a work-in-progress to develop functions for efficiently computing summary variant information over an array of genotypes stored in TINYINT[]. At the moment, it is little more than a collection of a couple of functions that I have used for this purpose and not the development of a function library per se.
+
+Currently included are:
+- alternate_allele_frequency( TINYINT[], INTEGER[] ), a function over an array of genotypes and a corresponding array of indices into that array we should use
+- summarize_variant( TINYINT[], INTEGER[], INTEGER[] ), a function over an array of genotypes and two corresponding array of indices into that array we should use, both of which can be null
+
+The output format for summarize_variant is:
+- [0] = whole genotype array call rate
+- [1] = whole genotype array minor allele frequency
+- [2] = first subset call rate if first subset index array is not NULL, otherwise NULL
+- [3] = first subset minor allele frequency if first subset index array is not NULL, otherwise NULL
+- [4] = second sbuset call rate if second subset index array is not NULL, otherwise NULL
+- [5] = second subset minor allele frequency if second subset index array is not NULL, otherwise NULL
+
+The interfaces beg for improvement with these functions. The summarize_variant function should be variadic on the number of subsets to accept. This I will perhaps do if there is not a large penalty to variadic argument construction with large arrays. It would be ideal for both functions to operate modularly with array_multi_index, but this requires additional scans of potentially very large arrays and sacrifices too much computational effort.
